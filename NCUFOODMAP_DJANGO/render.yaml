@@ -3,11 +3,13 @@ services:
     name: ncufoodmap
     env: python
     rootDir: NCUFOODMAP_DJANGO
-    buildCommand: pip install -r requirements.txt
+    buildCommand: >
+      python -m pip install --upgrade pip &&
+      pip install -r requirements.txt
     startCommand: >
       PYTHONPATH=$PYTHONPATH:. python manage.py migrate &&
       PYTHONPATH=$PYTHONPATH:. python manage.py collectstatic --noinput &&
-      PYTHONPATH=$PYTHONPATH:. gunicorn ncufoodmap_backend.wsgi:application --bind 0.0.0.0:$PORT --log-level debug --timeout 120
+      PYTHONPATH=$PYTHONPATH:. gunicorn ncufoodmap_backend.wsgi:application --bind 0.0.0.0:$PORT --log-level debug --timeout 120 --workers 4 --threads 4
     envVars:
       - key: PYTHON_VERSION
         value: 3.9.18
