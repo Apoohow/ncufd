@@ -10,7 +10,7 @@ services:
       PYTHONPATH=$PYTHONPATH:. gunicorn ncufoodmap_backend.wsgi:application --bind 0.0.0.0:$PORT --log-level debug --timeout 120
     envVars:
       - key: PYTHON_VERSION
-        value: 3.9.0
+        value: 3.9.18
       - key: PORT
         value: 10000
       - key: DATABASE_URL

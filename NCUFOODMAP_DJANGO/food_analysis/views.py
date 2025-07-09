@@ -10,7 +10,6 @@ from .forms import FoodAnalysisForm, PersonalFoodRecordForm
 import random
 import os
 import json
-import together
 from dotenv import load_dotenv
 from django.conf import settings
 import re
@@ -21,7 +20,12 @@ import requests
 load_dotenv()
 
 # 初始化 Together AI 客戶端
-together.api_key = settings.TOGETHER_API_KEY
+try:
+    import together
+    together.api_key = settings.TOGETHER_API_KEY
+except ImportError:
+    together = None
+    print("Warning: together package not available")
 
 def nutrition_dashboard(request):
     """營養分析儀表板，提供整體食品營養概覽"""
