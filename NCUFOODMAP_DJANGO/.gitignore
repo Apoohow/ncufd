@@ -1,0 +1,69 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+
+# Django 靜態檔案收集目錄（collectstatic 的輸出）
+staticfiles/
+static_root/
+static_collected/
+
+# 虛擬環境
+venv/
+env/
+ENV/
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 系統文件
+.DS_Store
+Thumbs.db
+
+# 快取
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# 日誌
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 部署相關
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so 
