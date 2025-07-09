@@ -32,14 +32,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-fuu%f*!zbo3=x59j#!5@=hp8z=hy84)=txwn^c!bq(_u8q#&*6')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
 # 安全設定
-SECURE_SSL_REDIRECT = os.getenv('DJANGO_ENV', 'development') == 'production'
-SESSION_COOKIE_SECURE = os.getenv('DJANGO_ENV', 'development') == 'production'
-CSRF_COOKIE_SECURE = os.getenv('DJANGO_ENV', 'development') == 'production'
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')
+SECURE_SSL_REDIRECT = DJANGO_ENV == 'production'
+SESSION_COOKIE_SECURE = DJANGO_ENV == 'production'
+CSRF_COOKIE_SECURE = DJANGO_ENV == 'production'
 
 
 # Application definition
