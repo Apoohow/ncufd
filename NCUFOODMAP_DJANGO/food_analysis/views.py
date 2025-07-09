@@ -19,13 +19,17 @@ import requests
 # 載入環境變數
 load_dotenv()
 
-# 初始化 Together AI 客戶端
-try:
-    import together
-    together.api_key = settings.TOGETHER_API_KEY
-except ImportError:
-    together = None
-    print("Warning: together package not available")
+# 延遲導入 together
+together = None
+def get_together_client():
+    global together
+    if together is None:
+        try:
+            import together
+            together.api_key = settings.TOGETHER_API_KEY
+        except ImportError:
+            print("Warning: together package not available")
+    return together
 
 def nutrition_dashboard(request):
     """營養分析儀表板，提供整體食品營養概覽"""
@@ -508,7 +512,7 @@ def analyze_food(food_description):
 
         # 調用 Together AI API
         print(f"正在使用 Together AI API 進行分析，模型：mistralai/Mixtral-8x7B-Instruct-v0.1")
-        response = together.Complete.create(
+        response = get_together_client().Complete.create(
             prompt=prompt,
             model="mistralai/Mixtral-8x7B-Instruct-v0.1",
             max_tokens=1000,

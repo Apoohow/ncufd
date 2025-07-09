@@ -5,7 +5,7 @@ services:
     rootDir: NCUFOODMAP_DJANGO
     buildCommand: >
       python -m pip install --upgrade pip &&
-      pip install -r requirements.txt
+      pip install -r requirements.txt --use-feature=2020-resolver
     startCommand: >
       PYTHONPATH=$PYTHONPATH:. python manage.py migrate &&
       PYTHONPATH=$PYTHONPATH:. python manage.py collectstatic --noinput &&
